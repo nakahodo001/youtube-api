@@ -24,17 +24,21 @@ def data_split(data):
         # なぜか先頭に空文字が入ることがある？？
         # 除去しておく
         split_comment = [data for data in split_comment if data != '']
+        split_comment = list(map(lambda x : ''.join(x.split()), split_comment))
 
         # 数字の後の文字と対応付ける
         index = 0 if comment.find(times[0]) == 0 else 1
         for time in times:
-            res = []
-            text = ""
-            if len(split_comment) != index:
-                text = split_comment[index]
+            # 参照先がないとき
+            if len(split_comment) <= index :
+                break
 
-            res.extend((time, text))
-            split_data.append(res)
+            if split_comment[index] != '' :
+                res = []
+                text = split_comment[index]
+                res.extend((time, text))
+                split_data.append(res)
+
             index += 1
 
     return split_data
@@ -44,7 +48,7 @@ def store_csv(file_path, data):
         writer = csv.writer(f)
         writer.writerows(data)
 
-filename = 'QNSR8pl38EM'
+filename = '4obg8rf3nnQ'
 filepath = './comment/' + filename + '.csv'
 out_filepath = './comment/' + filename + '-split.csv'
 
