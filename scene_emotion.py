@@ -1,30 +1,7 @@
 from mlask import MLAsk
 import re
 import csv
-
-EMOTION = {
-    'suki': '好',
-    'ikari': '怒',
-    'kowa': '怖',
-    'yasu': '安',
-    'iya': '嫌',
-    'aware': '焦',
-    'takaburi': '昂',
-    'odoroki': '驚',
-    'haji': '恥',
-    'yorokobi': '喜'
-}
-
-EMOTION_ROMA = [
-    'suki', 'ikari', 'kowa', 'yasu', 'iya', 'aware',
-    'takaburi', 'odoroki', 'haji', 'yorokobi'
-]
-
-EMOTION_KANJI = [
-    '好', '怒', '怖', '安', '嫌', '哀', '昂', '驚', '恥', '喜'
-]
-
-EMOTION_CNT = 10
+import const
 
 def getCSV(filepath):
     with open(filepath) as f:
@@ -34,9 +11,9 @@ def getCSV(filepath):
     return data
 
 def getEmotionPoint(emotions):
-    emotion_point = [0] * EMOTION_CNT
+    emotion_point = [0] * const.EMOTION_CNT
     for emotion in emotions:
-        emotion_point[EMOTION_ROMA.index(emotion)] += 1
+        emotion_point[const.EMOTION_ROMA.index(emotion)] += 1
 
     return emotion_point
 
@@ -44,7 +21,7 @@ def mostSceneEmotions(scene_emotions):
     scene_most_emotions = {}
     for scene, emotions in scene_emotions.items():
         max_point = max(emotions)
-        most_emotion = [EMOTION_KANJI[index] for index, point in enumerate(emotions) if max_point == point]
+        most_emotion = [const.EMOTION_KANJI[index] for index, point in enumerate(emotions) if max_point == point]
         scene_most_emotions[scene] = most_emotion
 
     return scene_most_emotions
