@@ -8,7 +8,7 @@ def get_csv(filepath):
 
     return data[1:]
 
-def data_split(data):
+def comment_split(data):
     split_data = []
     for comment in data:
         # "1:12:13 or 12:13" を抽出
@@ -53,5 +53,5 @@ filepath = './comment/' + filename + '.csv'
 out_filepath = './comment/' + filename + '-split.csv'
 
 data = get_csv(filepath)
-split_data = data_split(data)
+split_data = comment_split(data)
 store_csv(out_filepath, split_data)
