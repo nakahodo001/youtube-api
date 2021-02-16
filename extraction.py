@@ -47,11 +47,3 @@ def store_csv(file_path, data):
     with open(file_path, 'w', newline="", errors="ignore") as f:
         writer = csv.writer(f)
         writer.writerows(data)
-
-filename = '4obg8rf3nnQ'
-filepath = './comment/' + filename + '.csv'
-out_filepath = './comment/' + filename + '-split.csv'
-
-data = get_csv(filepath)
-split_data = split_comments(data)
-store_csv(out_filepath, split_data)

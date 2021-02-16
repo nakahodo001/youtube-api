@@ -3,7 +3,7 @@ import re
 import csv
 import const
 
-def getCSV(filepath):
+def get_csv(filepath):
     with open(filepath) as f:
         reader = csv.reader(f)
         data = [row for row in reader]
@@ -46,11 +46,3 @@ def get_scene_emotions(data):
             scene_emotions[scene[0]] = emotion_point
 
     return most_scene_emotions(scene_emotions)
-
-
-filename = '4obg8rf3nnQ'
-filepath = './comment/' + filename + '-split.csv'
-
-data = getCSV(filepath)
-scene_emotion = get_scene_emotions(data)
-print(scene_emotion)

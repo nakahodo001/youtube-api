@@ -4,6 +4,8 @@ import settings
 import csv
 
 def get_video_comment(video_id, part='snippet', order='time', text_format='plaintext', max_n=100):
+    URL = 'https://www.googleapis.com/youtube/v3/'
+    API_KEY = settings.API_KEY
     get_cnt = 0
     comments = [['video_id', 'comment', 'like_cnt', 'reply_cnt']]
     next_page_token = ''
@@ -20,9 +22,6 @@ def get_video_comment(video_id, part='snippet', order='time', text_format='plain
         }
         response = requests.get(URL + 'commentThreads', params=params)
         resource = response.json()
-
-        #with open('./test2-2.json', 'w') as f:
-        #    json.dump(resource, f, indent=4)
 
         for comment_info in resource['items']:
             get_data = []
@@ -49,11 +48,3 @@ def store_comment_csv(file_path, comments):
     with open(file_path, 'w', newline="", errors="ignore") as f:
         writer = csv.writer(f)
         writer.writerows(comments)
-
-URL = 'https://www.googleapis.com/youtube/v3/'
-API_KEY = settings.API_KEY
-video_id = '4obg8rf3nnQ'
-file_path = './comment/' + video_id + '.csv'
-
-comments = get_video_comment(video_id, order='relevance', max_n=10000)
-store_comment_csv(file_path, comments)
