@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.1.2
 requests==2.22.0
 pymlask==0.3.2
 mecab-python3==1.0.3
