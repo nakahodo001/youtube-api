@@ -1,1 +1,3 @@
 Flask==0.12.2
+requests==2.22.0
+pymlask==0.3.2
