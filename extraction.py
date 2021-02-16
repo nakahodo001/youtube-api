@@ -8,6 +8,11 @@ def get_csv(filepath):
 
     return data[1:]
 
+def time_shape(time):
+    state = "00:00:00"
+    time_len = len(time)
+    return state[:8-time_len] + time
+
 def split_comments(data):
     split_data = []
     for comment in data:
@@ -36,7 +41,7 @@ def split_comments(data):
             if split_comment[index] != '' :
                 res = []
                 text = split_comment[index]
-                res.extend((time, text))
+                res.extend((time_shape(time), text))
                 split_data.append(res)
 
             index += 1
