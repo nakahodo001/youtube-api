@@ -1,11 +1,11 @@
 import requests
 import json
-import settings
 import csv
+import os
 
 def get_video_comment(video_id, part='snippet', order='time', text_format='plaintext', max_n=100):
     URL = 'https://www.googleapis.com/youtube/v3/'
-    API_KEY = settings.API_KEY
+    API_KEY = os.environ(API_KEY)
     get_cnt = 0
     comments = [['video_id', 'comment', 'like_cnt', 'reply_cnt']]
     next_page_token = ''
