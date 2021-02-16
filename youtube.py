@@ -3,7 +3,7 @@ import json
 import settings
 import csv
 
-def getVideoComment(video_id, part='snippet', order='time', text_format='plaintext', max_n=100):
+def get_video_comment(video_id, part='snippet', order='time', text_format='plaintext', max_n=100):
     get_cnt = 0
     comments = [['video_id', 'comment', 'like_cnt', 'reply_cnt']]
     next_page_token = ''
@@ -52,8 +52,8 @@ def store_comment_csv(file_path, comments):
 
 URL = 'https://www.googleapis.com/youtube/v3/'
 API_KEY = settings.API_KEY
-video_id = 'QNSR8pl38EM'
+video_id = '4obg8rf3nnQ'
 file_path = './comment/' + video_id + '.csv'
 
-comments = getVideoComment(video_id, order='relevance', max_n=10000)
+comments = get_video_comment(video_id, order='relevance', max_n=10000)
 store_comment_csv(file_path, comments)

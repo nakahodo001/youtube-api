@@ -1,7 +1,7 @@
 import re
 import csv
 
-def getCSV(filepath):
+def get_csv(filepath):
     with open(filepath) as f:
         reader = csv.reader(f)
         data = [row[1] for row in reader]
@@ -52,6 +52,6 @@ filename = '4obg8rf3nnQ'
 filepath = './comment/' + filename + '.csv'
 out_filepath = './comment/' + filename + '-split.csv'
 
-data = getCSV(filepath)
+data = get_csv(filepath)
 split_data = data_split(data)
 store_csv(out_filepath, split_data)
