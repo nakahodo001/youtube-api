@@ -21,6 +21,7 @@ def youtube_emotions():
     comments = get_video_comment(video_id, order='relevance', max_n=10000)
     comments = [row[1] for row in comments]
     comments = split_comments(comments[1:])
+    print(comments)
     scene_emotion = get_scene_emotions(comments)
 
     json_result = json.dumps(scene_emotion, sort_keys=True)
