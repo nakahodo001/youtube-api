@@ -23,7 +23,7 @@ def youtube_emotions():
     comments = split_comments(comments[1:])
     print(comments)
     scene_emotion = get_scene_emotions(comments)
-
+    print(scene_emotion)
     json_result = json.dumps(scene_emotion, sort_keys=True)
     return json_result
 
