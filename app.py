@@ -28,18 +28,17 @@ def youtube_emotions():
     json_result = json.dumps(scene_emotion, sort_keys=True)
     return json_result
 
-@app.route('/test_mlask', methods=['POST'])
-def test_mlask():
+@app.route('/youtube_time_comment', methods=['POST'])
+def youtube_time_comment():
     req_json = request.get_json()
-    text = req_json['text']
+    video_id = req_json['video_id']
 
-    emotion_analyzer = MLAsk()
-    res = emotion_analyzer.analyze('彼のことは嫌いではない！(;´Д`)')
-
-    print(text)
-    print(res)
-
-    return res
+    comments = get_video_comment(video_id, order='relevance', max_n=10000)
+    comments = [row[1] for row in comments]
+    comments = split_comments(comments[1:])
+    print(comments)
+    json_result = json.dumps(comments, sort_keys=True)
+    return json_result
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
