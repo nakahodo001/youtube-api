@@ -34,10 +34,12 @@ def test_mlask():
     text = req_json['text']
 
     emotion_analyzer = MLAsk()
-    res = emotion_analyzer.analyze(text)
+    res = emotion_analyzer.analyze('彼のことは嫌いではない！(;´Д`)')
 
     print(text)
     print(res)
-    
+
+    return res
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
