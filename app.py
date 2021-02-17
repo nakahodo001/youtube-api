@@ -5,6 +5,7 @@ from get_comment import get_video_comment
 from scene_emotion import get_scene_emotions
 from extraction import split_comments
 from flask import Flask, jsonify, make_response, request, Response
+from mlask import MLAsk
 
 app = Flask(__name__)
 
@@ -27,5 +28,16 @@ def youtube_emotions():
     json_result = json.dumps(scene_emotion, sort_keys=True)
     return json_result
 
+@app.route('/test_mlask', methods=['POST'])
+def test_mlask():
+    req_json = request.get_json()
+    text = req_json['text']
+
+    emotion_analyzer = MLAsk()
+    res = emotion_analyzer.analyze(text)
+
+    print(text)
+    print(res)
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
