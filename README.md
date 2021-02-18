@@ -7,7 +7,7 @@
 * <b>「好きな」 or 「注目されている」シーンを振り返る</b>システムを作りたかった．https://github.com/nakahodo001/chrome-youtube-time-comment
 
 ## 使用方法
-youtubeの動画IDを指定．
+video_idの対の部分にyoutubeの動画IDを指定．
 
 「v=xxx」 の 「xxx」 部：https://www.youtube.com/watch?v=<b>LM33oX5oJhM</b>
 
