@@ -37,8 +37,8 @@ def youtube_emotions():
 @app.route('/youtube_time_comment', methods=['POST'])
 def youtube_time_comment():
     req_json = request.get_json()
-    print(req_json)
-    video_id = req_json['video_id']
+    print(request.form)
+    video_id = request.form['video_id']
 
     comments = get_video_comment(video_id, order='relevance', max_n=10000)
     comments = [row[1] for row in comments]
