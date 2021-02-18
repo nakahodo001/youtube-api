@@ -38,6 +38,7 @@ def youtube_emotions():
 def youtube_time_comment():
     req_json = request.get_json()
     print(request.form)
+    print(req_json)
     #video_id = request.form['video_id']
     video_id = req_json['video_id']
     comments = get_video_comment(video_id, order='relevance', max_n=10000)
