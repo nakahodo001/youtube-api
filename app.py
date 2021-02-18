@@ -5,14 +5,21 @@ from get_comment import get_video_comment
 from scene_emotion import get_scene_emotions
 from extraction import split_comments
 from flask import Flask, jsonify, make_response, request, Response
+from flask_cors import CORS
 from mlask import MLAsk
 
 app = Flask(__name__)
+cors = CORS(app)
 
 @app.route('/')
 def index():
     name = "Hello World"
     return name
+
+'''
+TODO : 
+　・感情取得(処理自体は出来てる)
+　・herokuにMecabを入れる
 
 @app.route('/youtube_emotions', methods=['POST'])
 def youtube_emotions():
@@ -25,6 +32,7 @@ def youtube_emotions():
     scene_emotion = get_scene_emotions(comments)
     json_result = json.dumps(scene_emotion, sort_keys=True)
     return json_result
+'''
 
 @app.route('/youtube_time_comment', methods=['POST'])
 def youtube_time_comment():
