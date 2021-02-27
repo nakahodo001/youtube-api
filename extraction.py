@@ -22,6 +22,12 @@ def split_comments(data):
         if times == []: 
             continue
 
+        # "xx:xx:xx or xx:xx" を抽出
+        reg = r'(^[\d]{1,2}:[\d]{1,2}:[\d]{1,2}$|^[\d]{1,2}:[\d]{1,2}$)'
+        times = [time for time in times if re.match(reg, time)]
+        if times == []:
+            continue
+
         # 抽出した時間でコメントを分割
         reg2 = '|'.join(times)
         split_comment = re.split(reg2, comment)
